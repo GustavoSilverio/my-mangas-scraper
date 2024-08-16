@@ -3,14 +3,14 @@ from mongo import salvarManga
 from time import time
 
 def main():
-    nome_manga = ""
-    while not nome_manga:
+    url_manga = ""
+    while not url_manga:
         print("Somente mangás do mangaonline.biz Exemplo url mangá:")
         print("https://mangaonline.biz/manga/kaiju-no-8/\n")
         
-        nome_manga = input("URL mangá: ")
+        url_manga = input("URL mangá: ")
         
-    capitulos, nome_manga = obterCapitulos(nome_manga)
+    capitulos, nome_manga = obterCapitulos(url_manga)
     salvarManga(capitulos, nome_manga)
     
 if __name__ == "__main__":
