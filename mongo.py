@@ -4,9 +4,9 @@ import os
 
 client = MongoClient(os.environ.get("MONGO_BASE_URL"))
 db = client["my-mangas"]
-collection = db["capitulo"]
+collection = db["manga"]
 
 
-def salvarCapitulos(capitulos: List[Dict[str, List[Dict[str, str]]]], nome_manga: str):
+def salvarManga(capitulos: List[Dict[str, List[Dict[str, str]]]], nome_manga: str):
     result = collection.insert_one({"nome": nome_manga, "capitulos": capitulos})
     print("Id mangá: ", result.inserted_id)
