@@ -38,7 +38,7 @@ def obterCapitulos(url_manga: str):
     with ThreadPoolExecutor() as executor:
         lista_capitulos = []
 
-        pools = [executor.submit(obterPaginasDoCapitulo, link_cap) for link_cap in lista_links_capitulos]
+        pools = [executor.submit(obterPaginasDoCapitulo, link_cap) for link_cap in reversed(lista_links_capitulos)]
         
         for pool in pools:
             paginas, nome_capitulo  = pool.result()
