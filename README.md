@@ -39,7 +39,7 @@ Este projeto está licenciado sob a [MIT License](LICENSE). Sinta-se à vontade 
     ```bash
     python main.py
     ```
-5. É necessário criar um cluster (banco) no mongodb para poder armazenar os mangás, após isso crie um arquivo .env na raiz do projeto e adicione a seguinte env var:
+6. É necessário criar um cluster (banco) no mongodb para poder armazenar os mangás, após isso crie um arquivo .env na raiz do projeto e adicione a seguinte env var:
     ```env
     MONGO_BASE_URL='mongodb+srv://USER:SENHA@********.mongodb.net/'
     ```
