@@ -8,6 +8,7 @@ from typing import List
 def obterPaginasCapitulos(urls: List[str]):
     try:
         driverCapitulo = webdriver.Chrome()
+        driverCapitulo.fullscreen_window()
         
         capitulos: List[Capitulo] = []
         
@@ -80,7 +81,7 @@ def obterManga(url: str) -> Manga:
                 links_capitulos.append(f"https://slimeread.com{a["href"]}")
                 
         
-        capitulos = obterPaginasCapitulos(links_capitulos[0:10])
+        capitulos = obterPaginasCapitulos(links_capitulos)
 
         manga: Manga = {
             "nomeManga": nome_manga.replace("-", " "),
