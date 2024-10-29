@@ -37,7 +37,7 @@ def obterPaginasCapitulos(urls: List[str]):
             
         return capitulos 
     except:
-        raise ValueError("Algo deu errado com o emulador.")
+        raise ValueError("Ocorreu um erro, tente novamente.")
     finally:
         driverCapitulo.quit()     
 
