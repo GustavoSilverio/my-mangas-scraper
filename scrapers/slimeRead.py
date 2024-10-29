@@ -8,7 +8,6 @@ from typing import List
 def obterPaginasCapitulos(urls: List[str]):
     try:
         driverCapitulo = webdriver.Chrome()
-        driverCapitulo.fullscreen_window()
         
         capitulos: List[Capitulo] = []
         
