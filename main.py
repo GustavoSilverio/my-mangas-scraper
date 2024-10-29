@@ -1,20 +1,21 @@
-from webScrapping import obterCapitulos
+from webScrapping import fazerWebScrapping, sites
 from mongo import salvarManga
 from time import time
 
 def main():
-    url_manga = ""
-    while not url_manga:
-        print("Somente mangás do mangaonline.biz Exemplo url mangá:")
-        print("https://mangaonline.biz/manga/kaiju-no-8/\n")
-        
-        url_manga = input("URL mangá: ")
-        
-    capitulos, nome_manga = obterCapitulos(url_manga)
-    salvarManga(capitulos, nome_manga)
+    print("Somente os mangas dos seguintes sites são aceitos:\n")
+
+    for dominio in sites.keys():
+        print(f"- {dominio}")
+    
+    url_manga = input("\nURL mangá: ")
+    manga = fazerWebScrapping(url_manga)
+    
+    salvarManga(manga)
+
     
 if __name__ == "__main__":
     inicio = time()
     main()
     fim = time()
-    print(f"Demorou: ", fim - inicio)
+    print(f"Elapsed time: {fim - inicio:.2f} seconds")

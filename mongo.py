@@ -1,4 +1,4 @@
-from typing import List, Dict
+from models.manga import Manga
 from pymongo import MongoClient
 import os
 
@@ -7,6 +7,6 @@ db = client["my-mangas"]
 collection = db["manga"]
 
 
-def salvarManga(capitulos: List[Dict[str, List[Dict[str, str]]]], nome_manga: str):
-    result = collection.insert_one({"nome": nome_manga, "capitulos": capitulos})
+def salvarManga(manga: Manga):
+    result = collection.insert_one({"nome": manga.get("nomeManga"), "capitulos": manga.get("capitulos")})
     print("Id mangá: ", result.inserted_id)
