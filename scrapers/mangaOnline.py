@@ -31,8 +31,11 @@ def obterManga(url: str) -> Manga:
         raise ValueError(f"Página do mangá não encontrada, Url: {url}")
 
     soup_capitulos = BeautifulSoup(result_capitulos.text, "html.parser")
+    
     lista_capitulos_html = soup_capitulos.find_all("div", class_="episodiotitle")
     lista_links_capitulos = [cap.a['href'] for cap in lista_capitulos_html if cap.a['href']]
+    
+    img_capa = soup_capitulos.find("div", class_="poster").img["src"]
 
     # obter cada página de cada capítulo com threading
 
@@ -55,6 +58,7 @@ def obterManga(url: str) -> Manga:
     manga: Manga = {
         "capitulos": capitulos,
         "nomeManga": nome_manga,
+        "imgCapa": img_capa,
     }
     
     return manga

@@ -5,6 +5,7 @@ class Capitulo(TypedDict):
     paginas: List[str]
 
 class Manga(TypedDict):
-    capitulos: List[Capitulo]
     nomeManga: str
+    imgCapa: str
+    capitulos: List[Capitulo]
     

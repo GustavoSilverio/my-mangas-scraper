@@ -62,6 +62,8 @@ def obterManga(url: str) -> Manga:
         
         nome_manga = nome_manga_element.text
         
+        img_capa = driver.find_element(By.XPATH, "/html/body/div/div/div/main/div[3]/div/div[1]/img[1]").get_attribute("src")
+        
         # obter os links dos capítulos
         
         quarta_secao_element = driver.find_element(By.XPATH, "/html/body/div/div/div/main/section[4]/div[1]/span")
@@ -99,7 +101,8 @@ def obterManga(url: str) -> Manga:
 
         manga: Manga = {
             "nomeManga": nome_manga.replace("-", " "),
-            "capitulos": capitulos
+            "capitulos": capitulos,
+            "imgCapa": img_capa,
         }
 
         return manga
