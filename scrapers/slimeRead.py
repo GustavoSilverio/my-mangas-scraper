@@ -11,10 +11,17 @@ def obterPaginasCapitulos(urls: List[str]):
         
         capitulos: List[Capitulo] = []
         
+        
+        primeira_iteracao = True
+        
         for url in urls:
             driverCapitulo.get(url)
             
-            sleep(5)
+            if primeira_iteracao:
+                sleep(7)
+                primeira_iteracao = False
+            
+            sleep(3)
             
             element_nome_cap = driverCapitulo.find_element(By.XPATH, "/html/body/div/div/div/main/div[2]/div[1]/div[1]/h1/p")
             
@@ -49,22 +56,30 @@ def obterManga(url: str) -> Manga:
         driver.get(url)
         driver.fullscreen_window()
         
-        sleep(3)
+        sleep(10)
         
         nome_manga_element = driver.find_element(By.XPATH, "/html/body/div/div/div/main/div[3]/div/div[2]/p")
         
         nome_manga = nome_manga_element.text
         
         # obter os links dos capítulos
-        filter_btn = driver.find_element(By.XPATH, "/html/body/div/div/div/main/section[5]/div[1]/div")
+        
+        quarta_secao_element = driver.find_element(By.XPATH, "/html/body/div/div/div/main/section[4]/div[1]/span")
+        
+        numero_secao_capitulos = 4 # caso tenha a section "tags" a seção de capítulos é a 5º
+        
+        if quarta_secao_element.text == "Tags":
+            numero_secao_capitulos = 5
+        
+        filter_btn = driver.find_element(By.XPATH, f"/html/body/div/div/div/main/section[{numero_secao_capitulos}]/div[1]/div")
         filter_btn.click()
         sleep(1)
         
-        button = driver.find_element(By.XPATH, "/html/body/div/div/div/main/section[5]/div[2]/div/div[2]/div/div/div[2]/div")
+        button = driver.find_element(By.XPATH, f"/html/body/div/div/div/main/section[{numero_secao_capitulos}]/div[2]/div/div[2]/div/div/div[2]/div")
         button.click()
         sleep(3)
         
-        caps_element = driver.find_element(By.XPATH, "/html/body/div/div/div/main/section[5]/div[2]/div/div[2]/div/div/div[1]")
+        caps_element = driver.find_element(By.XPATH, f"/html/body/div/div/div/main/section[{numero_secao_capitulos}]/div[2]/div/div[2]/div/div/div[1]")
         
         
         caps_soup = BeautifulSoup(caps_element.get_attribute("outerHTML"), "html.parser")
